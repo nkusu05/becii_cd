@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BECII - Bureau d'Étude et de Consultation en Ingénierie Informatique</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --text-color: #1f2937;
+            --bg-light: #f9fafb;
+            --card-bg: #eeeeee; /* Gris carte demandé */
+            --white: #ffffff;
+            --whatsapp-color: #25d366;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+            margin-top: 1rem;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128c7e;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .underline {
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            margin: 0 auto;
+        }
+
+        /* Expertise & Formation Cards */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg); /* Gris carte */
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .card .duration {
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+        }
+
+        /* Badges Section */
+        .badges-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .badge {
+            text-align: center;
+            width: 120px;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+        }
+
+        .badge p {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--bg-light);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #eee;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: #f0f4ff;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            background-color: white;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .about-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .about-list li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: var(--white);
+            padding: 3rem 5% 1rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+                text-align: center;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                order: -1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="#" class="logo">BECII</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#a-propos">À Propos</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#formation">Formation</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <h1>Innover, transformer, simplifier</h1>
+        <p>Bureau d'Étude et de Consultation en Ingénierie Informatique spécialisé dans la conception, le développement et l’optimisation de solutions technologiques innovantes.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="#expertise" class="btn">Nos Services</a>
+            <a href="https://wa.me/243980046069" target="_blank" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> Contact WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- Badges de Compétences -->
+    <section id="badges" style="padding-top: 2rem; padding-bottom: 2rem;">
+        <div class="badges-container">
+            <div class="badge">
+                <div class="badge-icon"><i class="fas fa-certificate"></i></div>
+                <p>Expertise Certifiée</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon"><i class="fas fa-user-graduate"></i></div>
+                <p>Formation Pratique</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon"><i class="fas fa-shield-halved"></i></div>
+                <p>Sécurité Garantie</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon"><i class="fas fa-microchip"></i></div>
+                <p>Innovation Tech</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon"><i class="fas fa-headset"></i></div>
+                <p>Support 24/7</p>
+            </div>
+            <div class="badge">
+                <div class="badge-icon"><i class="fas fa-check-double"></i></div>
+                <p>Qualité Premium</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- À Propos Section -->
+    <section id="a-propos">
+        <div class="section-title">
+            <h2>À Propos de BECII</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Notre Mission</h3>
+                <p>Accompagner les entreprises, institutions et particuliers dans leur transformation digitale en leur proposant des solutions adaptées, performantes et durables.</p>
+                <ul class="about-list">
+                    <li><i class="fas fa-check-circle"></i> Simplifier la technologie pour tous</li>
+                    <li><i class="fas fa-check-circle"></i> Accompagner la transformation numérique</li>
+                    <li><i class="fas fa-check-circle"></i> Concevoir des solutions adaptées</li>
+                    <li><i class="fas fa-check-circle"></i> Garantir performance et sécurité</li>
+                </ul>
+                <h3 style="margin-top: 2rem;">Notre Vision</h3>
+                <p>Devenir un acteur de référence en ingénierie informatique en Afrique, en offrant des solutions technologiques accessibles, innovantes et à forte valeur ajoutée.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Équipe BECII" style="width: 100%; border-radius: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Domaines d'Expertise Section -->
+    <section id="expertise" style="background-color: var(--bg-light);">
+        <div class="section-title">
+            <h2>Nos Domaines d'Expertise</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="grid-layout">
+            <div class="card">
+                <i class="fas fa-tasks"></i>
+                <h3>Gestion de Projet</h3>
+                <p>Pilotage et coordination de vos projets technologiques de A à Z.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-code"></i>
+                <h3>Développement Web & Mobile</h3>
+                <p>Conception d'applications modernes et performantes adaptées à vos besoins.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-network-wired"></i>
+                <h3>Réseaux & Infrastructures</h3>
+                <p>Mise en place et optimisation de vos infrastructures réseaux.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Cybersécurité</h3>
+                <p>Audit, protection et tests pour sécuriser vos données critiques.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud Computing</h3>
+                <p>Solutions dématérialisées pour une flexibilité maximale.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-robot"></i>
+                <h3>Automatisation & IA</h3>
+                <p>Optimisation des processus via des workflows, bots et intelligence artificielle.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-paint-brush"></i>
+                <h3>Graphisme & Design</h3>
+                <p>Conception visuelle et identité de marque percutante.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-video"></i>
+                <h3>Vidéosurveillance</h3>
+                <p>Systèmes de sécurité intelligents pour vos locaux.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-tools"></i>
+                <h3>Maintenance & Support</h3>
+                <p>Accompagnement technique continu pour vos systèmes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formation Section -->
+    <section id="formation">
+        <div class="section-title">
+            <h2>Nos Formations</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="grid-layout">
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Développement Web</h3>
+                <p>Apprenez à créer des sites web modernes avec HTML, CSS, JS et les frameworks actuels.</p>
+                <span class="duration">Durée : 1 mois</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-user-shield"></i>
+                <h3>Cybersécurité</h3>
+                <p>Maîtrisez les bases de la protection des données et des tests d'intrusion.</p>
+                <span class="duration">Durée : 1 mois</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Gestion de Projet IT</h3>
+                <p>Apprenez les méthodologies agiles et les outils de pilotage de projets informatiques.</p>
+                <span class="duration">Durée : 1 mois</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-brain"></i>
+                <h3>Intelligence Artificielle</h3>
+                <p>Introduction au machine learning et à l'automatisation par l'IA.</p>
+                <span class="duration">Durée : 1 mois</span>
+            </div>
+            <div class="card">
+                <i class="fab fa-microsoft"></i>
+                <h3>Suite Microsoft</h3>
+                <p>Maîtrise complète de Word, Excel, PowerPoint et Outlook pour les professionnels.</p>
+                <span class="duration">Durée : 1 mois</span>
+            </div>
+            <div class="card">
+                <i class="fas fa-desktop"></i>
+                <h3>Informatique de Base</h3>
+                <p>Initiation à l'utilisation de l'ordinateur, du système Windows et d'Internet.</p>
+                <span class="duration">Durée : 1 mois</span>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://wa.me/243980046069" target="_blank" class="btn btn-whatsapp">S'inscrire à une session</a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" style="background-color: var(--bg-light);">
+        <div class="section-title">
+            <h2>Foire Aux Questions</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Comment s'inscrire à une formation ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    L'inscription se fait directement via notre contact WhatsApp. Cliquez sur le bouton "S'inscrire" et envoyez-nous un message pour recevoir les modalités.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Les formations sont-elles certifiantes ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Oui, à la fin de chaque session de formation d'un mois, un certificat de fin de formation BECII est délivré après évaluation.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Proposez-vous des services à distance ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Absolument. Que ce soit pour le développement web, le conseil ou certaines formations, nous pouvons intervenir à distance.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Quels sont les horaires des formations ?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Nous avons des horaires flexibles (matin, après-midi ou soir) pour s'adapter aux disponibilités des professionnels et des étudiants.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Approche Section -->
+    <section id="approche">
+        <div class="section-title">
+            <h2>Notre Approche</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="grid-layout">
+            <div class="card" style="background-color: var(--bg-light);">
+                <i class="fas fa-comments"></i>
+                <h3>Écoute du client</h3>
+                <p>Comprendre vos besoins réels pour une solution personnalisée.</p>
+            </div>
+            <div class="card" style="background-color: var(--bg-light);">
+                <i class="fas fa-chart-line"></i>
+                <h3>Analyse stratégique</h3>
+                <p>Proposer des solutions efficaces basées sur une étude approfondie.</p>
+            </div>
+            <div class="card" style="background-color: var(--bg-light);">
+                <i class="fas fa-lightbulb"></i>
+                <h3>Innovation</h3>
+                <p>Utiliser les technologies les plus modernes du marché.</p>
+            </div>
+            <div class="card" style="background-color: var(--bg-light);">
+                <i class="fas fa-award"></i>
+                <h3>Qualité</h3>
+                <p>Livrer des solutions fiables, durables et performantes.</p>
+            </div>
+            <div class="card" style="background-color: var(--bg-light);">
+                <i class="fas fa-handshake"></i>
+                <h3>Partenariat Durable</h3>
+                <p>Bâtir une relation de confiance sur le long terme avec nos clients.</p>
+            </div>
+            <div class="card" style="background-color: var(--bg-light);">
+                <i class="fas fa-rocket"></i>
+                <h3>Agilité & Réactivité</h3>
+                <p>S'adapter rapidement aux changements pour garantir le succès de vos projets.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background-color: var(--bg-light);">
+        <div class="section-title">
+            <h2>Contactez-nous</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="contact-container">
+            <p style="margin-bottom: 2rem; font-size: 1.2rem;">Vous avez un projet ou souhaitez vous inscrire à une formation ? Contactez-nous directement sur WhatsApp pour une réponse rapide.</p>
+            <a href="https://wa.me/243980046069" target="_blank" class="btn btn-whatsapp" style="font-size: 1.2rem; padding: 1rem 3rem;">
+                <i class="fab fa-whatsapp"></i> Discuter sur WhatsApp
+            </a>
+            <p style="margin-top: 1.5rem; color: #666;">Numéro : +243 980 046 069</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>BECII</h3>
+                <p>Votre partenaire stratégique pour la transformation numérique. Nous transformons vos idées en solutions concrètes.</p>
+            </div>
+            <div>
+                <h3>Liens Rapides</h3>
+                <ul style="list-style: none; margin-top: 1rem;">
+                    <li><a href="#accueil" style="color: #ccc; text-decoration: none;">Accueil</a></li>
+                    <li><a href="#a-propos" style="color: #ccc; text-decoration: none;">À Propos</a></li>
+                    <li><a href="#expertise" style="color: #ccc; text-decoration: none;">Expertise</a></li>
+                    <li><a href="#formation" style="color: #ccc; text-decoration: none;">Formation</a></li>
+                    <li><a href="#contact" style="color: #ccc; text-decoration: none;">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> contact@becii.com</p>
+                <p><i class="fas fa-phone"></i> +243 980 046 069</p>
+                <div style="margin-top: 1rem;">
+                    <a href="#" style="color: white; margin-right: 1rem; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" style="color: white; margin-right: 1rem; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                    <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BECII - Bureau d'Étude et de Consultation en Ingénierie Informatique. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Mobile Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fermer le menu mobile lors du clic sur un lien
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // FAQ Interactive
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Animation au défilement (Simple Reveal)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.85) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        // Initialisation du style pour l'animation au défilement
+        document.querySelectorAll('section').forEach((section, index) => {
+            if (index !== 0) { // Ne pas masquer la section Hero
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.8s ease-out';
+            }
+        });
+    </script>
+</body>
+</html>
